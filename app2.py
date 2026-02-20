@@ -11,39 +11,83 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Simple, clean CSS
+# Simple, clean CSS - FORCED DARK MODE
 st.markdown("""
     <style>
-    .main {
-        background-color: #1a1a1a;
+    /* Force background for the entire app and main container */
+    .stApp, .main {
+        background-color: #1a1a1a !important;
+        color: #f0f0f0 !important;
     }
-    h1 {
-        color: #ffffff;
+
+    /* Force Header/Toolbar (where Deploy and Running icon live) to be dark */
+    header[data-testid="stHeader"] {
+        background-color: #1a1a1a !important;
+        color: #ffffff !important;
+    }
+
+    /* Target the 'Deploy' button specifically */
+    .stDeployButton > button {
+        background-color: #2d2d2d !important;
+        color: white !important;
+        border: 1px solid #404040 !important;
+    }
+
+    /* Force the 'Running' / Status widget (person running) to Dark Mode */
+    [data-testid="stStatusWidget"] {
+        background-color: #2d2d2d !important;
+        border: 1px solid #404040 !important;
+        border-radius: 20px !important;
+    }
+    
+    [data-testid="stStatusWidget"] div {
+        color: #ffffff !important;
+    }
+
+    /* Force Sidebar background and text */
+    [data-testid="stSidebar"], [data-testid="stSidebarNav"] {
+        background-color: #121212 !important;
+    }
+    
+    [data-testid="stSidebar"] * {
+        color: #e0e0e0 !important;
+    }
+
+    /* Typography fixes */
+    h1, h2, h3 {
+        color: #ffffff !important;
         font-weight: 600;
     }
-    h2 {
-        color: #e0e0e0;
-        font-weight: 500;
-        margin-top: 30px;
+    
+    p, span, label {
+        color: #b0b0b0 !important;
     }
-    h3 {
-        color: #cccccc;
-    }
-    p {
-        color: #b0b0b0;
-    }
+
+    /* Metric Cards */
     [data-testid="stMetricValue"] {
-        color: #ffffff;
+        color: #ffffff !important;
     }
+    
     [data-testid="stMetricLabel"] {
-        color: #b0b0b0;
+        color: #b0b0b0 !important;
     }
+    
     div[data-testid="metric-container"] {
-        background-color: #2d2d2d;
-        border: 1px solid #404040;
+        background-color: #2d2d2d !important;
+        border: 1px solid #404040 !important;
         padding: 15px;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Tables/Dataframes background fix */
+    [data-testid="stDataFrame"] {
+        background-color: #2d2d2d !important;
+    }
+
+    /* Spinner and loading icon container */
+    [data-testid="stLoadingIconContainer"] {
+        background-color: transparent !important;
     }
     </style>
     """, unsafe_allow_html=True)
